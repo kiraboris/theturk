@@ -34,16 +34,19 @@ class DemoWindow(QtWidgets.QMainWindow):
     def continue_game(self, command):
        
         if command:
-            move = command.result()
+            move, ponder = command.result()
            
             obj_board.push(move)
+            obj_engine.position(obj_board)
         
             if(obj_board.is_game_over()):
                 return
             else:   
                 # redraw board
                 str_svg_board = chess.svg.board(obj_board)
-                self.svg_widget.Load(QtCore.QByteArray(str_svg_board))
+                obj_temp = QtCore.QByteArray.fromRawData(
+                        bytes(str_svg_board, "ascii"))
+                self.svg_widget.load(obj_temp)
                 
                 # continue game
                 play_move(self.continue_game)
