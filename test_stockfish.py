@@ -9,8 +9,16 @@ import chess, chess.uci, chess.svg
 from PyQt5 import QtCore, QtWidgets, QtSvg 
 
 #init engine 
-obj_engine = chess.uci.popen_engine("stockfish")
-obj_engine.uci()
+choice = "stockfish"
+#choice = "Engine" #??
+
+if choice == "stockfish":
+    obj_engine = chess.uci.popen_engine("stockfish")
+    obj_engine.uci()
+else:
+    from test_engine import Engine
+    obj_engine = Engine()
+
 print(obj_engine.author)
 
 #make default board
@@ -30,6 +38,9 @@ class DemoWindow(QtWidgets.QMainWindow):
         
         # start game
         play_move(self.continue_game)
+        
+   #     obj_board._set_piece_at(square=chess.E5, 
+   #                             piece_type=chess.KING, color=chess.WHITE )
         
     def continue_game(self, command):
        
