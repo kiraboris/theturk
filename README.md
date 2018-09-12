@@ -1,2 +1,3 @@
-# turk
-A program that only playes chess.
+# theturk
+A program that only plays chess.
+(actually only a test of the Stockfish engine)
